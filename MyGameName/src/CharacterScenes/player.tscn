@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://bfxl2uo13aovk"]
+
+[ext_resource type="Script" uid="uid://b2hohmbth1xn1" path="res://src/CharacterScenes/Player.cs" id="1_0wodl"]
+[ext_resource type="Texture2D" uid="uid://djeumyeqg7wu2" path="res://src/CharacterScenes/dsantos.png" id="1_r78gf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r78gf"]
+size = Vector2(540, 540)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0wodl"]
+size = Vector2(606, 598.667)
+
+[node name="Player" type="Area2D"]
+script = ExtResource("1_0wodl")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_r78gf")
+
+[node name="DirectCollisionShape" type="CollisionShape2D" parent="."]
+position = Vector2(1.54972e-05, 2.38419e-05)
+shape = SubResource("RectangleShape2D_r78gf")
+
+[node name="ReachCollisionShape" type="CollisionShape2D" parent="."]
+position = Vector2(30, 22.9999)
+scale = Vector2(3, 3)
+shape = SubResource("RectangleShape2D_0wodl")
+debug_color = Color(0.793277, 0.426469, 5.77569e-07, 0.42)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

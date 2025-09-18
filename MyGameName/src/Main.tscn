@@ -1,6 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://du7hlwjl6vw6l"]
+[gd_scene load_steps=3 format=3 uid="uid://du7hlwjl6vw6l"]
 
-[ext_resource type="Script" uid="uid://b4lbl3c7hbc6r" path="res://src/Main.cs" id="1_prpoe"]
+[ext_resource type="PackedScene" uid="uid://dtr81vyecdloe" path="res://src/MainScenes/map/game_map.tscn" id="1_hk4rc"]
+[ext_resource type="PackedScene" uid="uid://bfxl2uo13aovk" path="res://src/CharacterScenes/player.tscn" id="2_chrbn"]
 
-[node name="Node2D" type="Node2D"]
-script = ExtResource("1_prpoe")
+[node name="Main" type="Node"]
+
+[node name="GameMap" parent="." instance=ExtResource("1_hk4rc")]
+
+[node name="Player" parent="." instance=ExtResource("2_chrbn")]
+position = Vector2(1231, 2334)
+scale = Vector2(0.15, 0.15)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
