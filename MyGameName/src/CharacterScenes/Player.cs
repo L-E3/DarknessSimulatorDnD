@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class Player : Area2D {
+public partial class Player : CharacterBody2D {
 	
 	[Signal]
 	public delegate void HitEventHandler();
@@ -24,23 +24,25 @@ public partial class Player : Area2D {
 		GetNode<CollisionShape2D>("DirectCollisionShape").Disabled = false;
 	}
 
-  	public override void _Process(double delta) {
-		var velocity = Vector2.Zero; // The player's movement vector.
+  	public override void _PhysicsProcess(double delta) {
+		var velocity = Velocity; // The player's movement vector.
 		
 		//MOVEMENT   
 		if (Input.IsActionPressed("move_right")) 
 		  velocity.X += 1;
-		if (Input.IsActionPressed("move_left")) 
-		  velocity.X -= 1;
-		if (Input.IsActionPressed("move_down")) 
+		else if (Input.IsActionPressed("move_left")) {
+			velocity.X -= 1;
+		}
+		else if (Input.IsActionPressed("move_down")) 
 		  velocity.Y += 1;
-		if (Input.IsActionPressed("move_up")) 
+		else if (Input.IsActionPressed("move_up")) 
 		  velocity.Y -= 1;
 
 		var sprite2D = GetNode<Sprite2D>("Sprite2D");
 		if (velocity.Length() > 0) 
-		  velocity = velocity.Normalized() * Speed;
-		Position += velocity * (float)delta;
+		  Velocity = velocity.Normalized() * Speed;
+		
+		MoveAndSlide();
 	}
 	
 	//TODO: Add the collisions
@@ -49,6 +51,11 @@ public partial class Player : Area2D {
 	private void OnBodyEntered(Node2D body){ 
 		//detect if in range to hit or was hit 
 		EmitSignal(SignalName.Hit);
+		GD.Print("body entered");
 		GetNode<CollisionShape2D>("DirectCollisionShape").SetDeferred(CollisionShape2D.PropertyName.Disabled, true);
+	}
+	
+	private void OnAreaEntered(Area2D area){ 
+		GD.Print("area entered");
 	}
 }
