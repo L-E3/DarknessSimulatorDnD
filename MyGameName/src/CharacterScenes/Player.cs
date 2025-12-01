@@ -37,12 +37,14 @@ public partial class Player : CharacterBody2D {
 		  velocity.Y += 1;
 		else if (Input.IsActionPressed("move_up")) 
 		  velocity.Y -= 1;
-
-		var sprite2D = GetNode<Sprite2D>("Sprite2D");
-		if (velocity.Length() > 0) 
-		  Velocity = velocity.Normalized() * Speed;
+		else{ 
+			velocity.X = 0;
+			velocity.Y = 0;
+		}
+		Velocity = velocity.Normalized() * Speed;
 		
 		MoveAndSlide();
+
 	}
 	
 	//TODO: Add the collisions

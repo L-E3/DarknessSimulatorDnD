@@ -1,7 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://du7hlwjl6vw6l"]
+[gd_scene load_steps=5 format=3 uid="uid://du7hlwjl6vw6l"]
 
 [ext_resource type="PackedScene" uid="uid://dtr81vyecdloe" path="res://src/MainScenes/map/game_map.tscn" id="1_hk4rc"]
 [ext_resource type="PackedScene" uid="uid://bfxl2uo13aovk" path="res://src/CharacterScenes/player.tscn" id="2_chrbn"]
+
+[sub_resource type="Gradient" id="Gradient_hk4rc"]
+offsets = PackedFloat32Array(0.0974026, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_chrbn"]
+gradient = SubResource("Gradient_hk4rc")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
 
 [node name="Main" type="Node"]
 
@@ -12,3 +21,11 @@ position = Vector2(1231, 2334)
 scale = Vector2(0.15, 0.15)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
+
+[node name="PointLight2D" type="PointLight2D" parent="Player"]
+position = Vector2(-6.66623, 10.0005)
+scale = Vector2(75, 71.5625)
+texture = SubResource("GradientTexture2D_chrbn")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.133196, 0.133196, 0.133196, 1)
