@@ -8,7 +8,7 @@ public partial class Player : CharacterBody2D {
 	
 	[Export]
   	public int Speed { get; set; } = 90; // How fast the player will move (pixels/sec).
-	public int reach {get; set; } = 3; //scale of how large the attack range is (3 = 15ft, 1 = 5ft) 
+	public int Reach {get; set; } = 3; //scale of how large the attack range is (3 = 15ft, 1 = 5ft) 
 	
   	public Vector2 ScreenSize;
 

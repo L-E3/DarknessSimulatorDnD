@@ -1,0 +1,58 @@
+[gd_scene load_steps=4 format=3 uid="uid://bfegii8h1wdxc"]
+
+[ext_resource type="Script" uid="uid://b8sjiojrne27u" path="res://src/InitiativeWindow.cs" id="1_ql4d2"]
+[ext_resource type="Texture2D" uid="uid://djeumyeqg7wu2" path="res://src/CharacterScenes/dsantos.png" id="2_xpvjm"]
+[ext_resource type="Texture2D" uid="uid://dekpmjd272mj6" path="res://src/CharacterScenes/donarmor.png" id="3_460pn"]
+
+[node name="InitiativeWindow" type="Node2D"]
+script = ExtResource("1_ql4d2")
+
+[node name="CharacterList" type="ItemList" parent="."]
+offset_top = 62.0
+offset_right = 493.0
+offset_bottom = 466.0
+item_count = 7
+icon_scale = 0.1
+fixed_icon_size = Vector2i(500, 500)
+item_0/text = "Don Santos"
+item_0/icon = ExtResource("2_xpvjm")
+item_1/text = "\"Don\""
+item_1/icon = ExtResource("3_460pn")
+item_2/text = "Victor"
+item_3/text = "Brymoira"
+item_4/text = "\"Bry\""
+item_5/text = "Labeen"
+item_6/text = "Albert"
+
+[node name="Description" type="Label" parent="."]
+offset_left = 11.0
+offset_top = 12.0
+offset_right = 277.0
+offset_bottom = 56.6667
+text = "INTIATIVE ORDER"
+
+[node name="SubmitButton" type="Button" parent="."]
+offset_left = 13.0
+offset_top = 605.0
+offset_right = 155.0
+offset_bottom = 666.0
+text = "Confirm"
+
+[node name="ResetButton" type="Button" parent="."]
+offset_left = 180.0
+offset_top = 605.0
+offset_right = 333.0
+offset_bottom = 666.0
+text = "Reset"
+
+[node name="CurrentOrder" type="Label" parent="."]
+offset_left = 38.0
+offset_top = 489.0
+offset_right = 719.0
+offset_bottom = 577.0
+autowrap_mode = 2
+
+[connection signal="item_activated" from="CharacterList" to="." method="_on_character_list_item_activated"]
+[connection signal="multi_selected" from="CharacterList" to="." method="_on_character_list_multi_selected"]
+[connection signal="pressed" from="SubmitButton" to="." method="_on_submit_button_pressed"]
+[connection signal="pressed" from="ResetButton" to="." method="_on_reset_button_pressed"]
